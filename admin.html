@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trung Tâm Quản Trị Affiliate & Doanh Thu - DealHunter AI</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header class="admin-header">
+        <div class="container">
+            <div class="admin-nav">
+                <a href="index.html" class="brand-logo">
+                    <div class="logo-icon">⚡</div>
+                    <div class="logo-text">DealHunter<span>Admin</span></div>
+                </a>
+
+                <div class="admin-tabs">
+                    <button class="tab-btn active" data-tab="tab-affiliate">🏷️ Cài Đặt Affiliate ID</button>
+                    <button class="tab-btn" data-tab="tab-add-deal">➕ Thêm Deal Mới</button>
+                    <button class="tab-btn" data-tab="tab-manage-deals">📋 Quản Lý Deal (<span id="tabCount">0</span>)</button>
+                    <button class="tab-btn" data-tab="tab-ai-review">🤖 Tạo Review SEO</button>
+                    <button class="tab-btn" data-tab="tab-data">💾 Sao Lưu & Xuất</button>
+                </div>
+
+                <div style="display: flex; gap: 10px;">
+                    <button class="btn-icon" id="themeToggleBtn" title="Chuyển đổi sáng/tối">
+                        <span id="themeIcon">☀️</span>
+                    </button>
+                    <a href="index.html" class="chip-btn" style="color: #fff; background: rgba(255, 255, 255, 0.08);">
+                        ← Xem Website
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="admin-container">
+        <div class="container">
+
+            <!-- Metrics Grid -->
+            <div class="admin-metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-title">Tổng Deal Đang Hoạt Động</div>
+                    <div class="metric-value" id="metricTotalDeals">0</div>
+                    <div class="metric-sub">Đồng bộ theo thời gian thực</div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-title">Lượt Click Affiliate Khách Hàng</div>
+                    <div class="metric-value" id="metricTotalClicks">0</div>
+                    <div class="metric-sub">Outbound click đến sàn TMĐT</div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-title">Doanh Số Bán Hàng Dự Kiến (GMV)</div>
+                    <div class="metric-value" id="metricEstimatedGMV">0 ₫</div>
+                    <div class="metric-sub">Dựa trên tỷ lệ chuyển đổi chuẩn ~3.2%</div>
+                </div>
+
+                <div class="metric-card" style="border-color: rgba(16, 185, 129, 0.4);">
+                    <div class="metric-title">Hoa Hồng Thụ Động Ước Tính</div>
+                    <div class="metric-value" style="color: var(--accent-green);" id="metricEstimatedCommission">0 ₫</div>
+                    <div class="metric-sub">Với mức hoa hồng trung bình 6.5%</div>
+                </div>
+            </div>
+
+            <!-- PANEL 1: CÀI ĐẶT AFFILIATE IDS -->
+            <section class="admin-panel active" id="tab-affiliate">
+                <div class="panel-card">
+                    <h2 class="panel-title">⚙️ Cấu Hình Mã Tiếp Thị Liên Kết (Affiliate IDs)</h2>
+                    <p class="panel-desc">
+                        Điền mã đối tác của bạn ở các sàn thương mại điện tử. Tất cả nút "Đến Sàn Mua Deal" trên toàn bộ trang web sẽ tự động gắn mã này để tính tiền hoa hồng về tài khoản của bạn!
+                    </p>
+
+                    <form id="affiliateSettingsForm">
+                        <div class="form-grid-2">
+                            <div class="form-group">
+                                <label class="form-label" for="settingShopee">🟠 Shopee Affiliate Sub ID / Tracking ID:</label>
+                                <input type="text" id="settingShopee" class="form-input" placeholder="Ví dụ: my_shopee_tag">
+                                <small style="color: var(--text-muted); font-size: 0.8rem;">Gắn vào tham số af_sub1 trên link Shopee</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="settingLazada">🔵 Lazada Affiliate ID:</label>
+                                <input type="text" id="settingLazada" class="form-input" placeholder="Ví dụ: my_lazada_sub">
+                                <small style="color: var(--text-muted); font-size: 0.8rem;">Gắn vào tham số aff_sub trên link Lazada</small>
+                            </div>
+                        </div>
+
+                        <div class="form-grid-2">
+                            <div class="form-group">
+                                <label class="form-label" for="settingTiktok">🖤 TikTok Shop Referral Code:</label>
+                                <input type="text" id="settingTiktok" class="form-input" placeholder="Ví dụ: my_tiktok_code">
+                                <small style="color: var(--text-muted); font-size: 0.8rem;">Gắn vào link chia sẻ TikTok Shop</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="settingTiki">🔷 Tiki Affiliate Partner Tag:</label>
+                                <input type="text" id="settingTiki" class="form-input" placeholder="Ví dụ: my_tiki_tag">
+                                <small style="color: var(--text-muted); font-size: 0.8rem;">Gắn vào tham số utm_aff trên link Tiki</small>
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="max-width: 320px;">
+                            <label class="form-label" for="settingCommissionRate">Tỷ lệ hoa hồng ước tính (%):</label>
+                            <input type="number" id="settingCommissionRate" class="form-input" value="6.5" step="0.5" min="1" max="50">
+                        </div>
+
+                        <button type="submit" class="btn-primary">
+                            💾 Lưu Toàn Bộ Cấu Hình
+                        </button>
+                    </form>
+                </div>
+            </section>
+
+            <!-- PANEL 2: THÊM DEAL MỚI -->
+            <section class="admin-panel" id="tab-add-deal">
+                <div class="panel-card">
+                    <h2 class="panel-title">➕ Đăng Tải Deal & Sản Phẩm Giảm Giá Mới</h2>
+                    <p class="panel-desc">
+                        Hệ thống sẽ tự động tính mức giảm giá (%) và tiền tiết kiệm, đồng thời gắn mã affiliate của bạn.
+                    </p>
+
+                    <form id="addDealForm">
+                        <div class="form-group">
+                            <label class="form-label" for="dealTitle">Tên sản phẩm đầy đủ:</label>
+                            <input type="text" id="dealTitle" class="form-input" required placeholder="Ví dụ: Chuột không dây Logitech MX Master 3S Silent">
+                        </div>
+
+                        <div class="form-grid-3">
+                            <div class="form-group">
+                                <label class="form-label" for="dealPlatform">Sàn thương mại điện tử:</label>
+                                <select id="dealPlatform" class="form-select">
+                                    <option value="shopee">Shopee</option>
+                                    <option value="lazada">Lazada</option>
+                                    <option value="tiktok">TikTok Shop</option>
+                                    <option value="tiki">Tiki</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="dealCategory">Ngành hàng:</label>
+                                <select id="dealCategory" class="form-select">
+                                    <option value="electronics">Công nghệ & Điện tử</option>
+                                    <option value="home">Nhà cửa & Đời sống</option>
+                                    <option value="beauty">Mỹ phẩm & Skincare</option>
+                                    <option value="fashion">Thời trang & Phụ kiện</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="dealRating">Đánh giá sao:</label>
+                                <input type="number" id="dealRating" class="form-input" value="4.9" step="0.1" min="1" max="5">
+                            </div>
+                        </div>
+
+                        <div class="form-grid-3">
+                            <div class="form-group">
+                                <label class="form-label" for="dealOriginalPrice">Giá niêm yết gốc (VNĐ):</label>
+                                <input type="number" id="dealOriginalPrice" class="form-input" required placeholder="2500000" step="10000">
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="dealPrice">Giá sale khuyến mãi (VNĐ):</label>
+                                <input type="number" id="dealPrice" class="form-input" required placeholder="1890000" step="10000">
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Tỷ lệ giảm tính tự động:</label>
+                                <div id="autoDiscountBadge" style="padding: 11px 16px; background: rgba(255, 71, 87, 0.15); color: #ff6b81; font-weight: 800; border-radius: var(--radius-sm); border: 1px dashed rgba(255, 71, 87, 0.4);">
+                                    0% OFF
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-grid-2">
+                            <div class="form-group">
+                                <label class="form-label" for="dealCouponCode">Mã giảm giá / Voucher (nếu có):</label>
+                                <input type="text" id="dealCouponCode" class="form-input" placeholder="Ví dụ: LOGITECH50K">
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="dealCouponDiscount">Mô tả ưu đãi của voucher:</label>
+                                <input type="text" id="dealCouponDiscount" class="form-input" placeholder="Ví dụ: Giảm 50K đơn từ 500K">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="dealAffiliateUrl">Link sản phẩm trên sàn (URL gốc):</label>
+                            <input type="url" id="dealAffiliateUrl" class="form-input" required placeholder="https://shopee.vn/product/...">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="dealImageUrl">Link ảnh sản phẩm:</label>
+                            <input type="url" id="dealImageUrl" class="form-input" required placeholder="https://images.unsplash.com/photo-...">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="dealDescription">Mô tả ngắn & điểm hấp dẫn:</label>
+                            <textarea id="dealDescription" class="form-textarea" placeholder="Nêu 1-2 câu tóm tắt điểm mạnh của deal này..."></textarea>
+                        </div>
+
+                        <button type="submit" class="btn-primary">
+                            🚀 Đăng Deal Lên Website
+                        </button>
+                    </form>
+                </div>
+            </section>
+
+            <!-- PANEL 3: QUẢN LÝ DEAL HIỆN CÓ -->
+            <section class="admin-panel" id="tab-manage-deals">
+                <div class="panel-card">
+                    <h2 class="panel-title">📋 Danh Sách Deal Đang Hiển Thị</h2>
+                    <p class="panel-desc">Xem, kiểm tra link hoặc xóa deal khi đã hết hạn khuyến mãi.</p>
+
+                    <div class="data-table-wrap">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Hình ảnh</th>
+                                    <th>Tên sản phẩm</th>
+                                    <th>Sàn</th>
+                                    <th>Giá Sale</th>
+                                    <th>Giảm %</th>
+                                    <th>Voucher</th>
+                                    <th>Hành động</th>
+                                </tr>
+                            </thead>
+                            <tbody id="dealsTableBody">
+                                <!-- Populated dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PANEL 4: TẠO REVIEW CHUẨN SEO -->
+            <section class="admin-panel" id="tab-ai-review">
+                <div class="panel-card">
+                    <h2 class="panel-title">🤖 Trình Tạo Bài Viết Đánh Giá Chuẩn SEO Tự Động</h2>
+                    <p class="panel-desc">
+                        Chọn một deal trong kho, hệ thống AI sẽ tự động phân tích và tạo bài viết review chuyên sâu với cấu trúc phân đoạn, ưu nhược điểm, lời kết và nút mua affiliate.
+                    </p>
+
+                    <div class="form-group" style="max-width: 500px;">
+                        <label class="form-label" for="selectDealForReview">Chọn sản phẩm cần tạo bài viết SEO:</label>
+                        <select id="selectDealForReview" class="form-select">
+                            <!-- Populated dynamically -->
+                        </select>
+                    </div>
+
+                    <button type="button" id="btnGenerateAiReview" class="btn-primary" style="margin-bottom: 24px;">
+                        ✨ Tạo Bài Viết Chuẩn SEO Ngay
+                    </button>
+
+                    <div id="aiReviewPreviewBox" style="display: none; background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 24px;">
+                        <h3 id="previewReviewTitle" style="margin-bottom: 12px; font-size: 1.3rem;"></h3>
+                        <div id="previewReviewContent"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PANEL 5: SAO LƯU & XUẤT NHẬP DỮ LIỆU -->
+            <section class="admin-panel" id="tab-data">
+                <div class="panel-card">
+                    <h2 class="panel-title">💾 Quản Lý Dữ Liệu & Sao Lưu</h2>
+                    <p class="panel-desc">Xuất toàn bộ kho deal thành file JSON để chia sẻ hoặc sao lưu an toàn.</p>
+
+                    <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+                        <button type="button" id="btnExportJson" class="chip-btn" style="padding: 12px 20px; font-size: 0.95rem; background: var(--primary); color: #fff;">
+                            📥 Tải Về File JSON Sao Lưu
+                        </button>
+                        <button type="button" id="btnResetDefault" class="chip-btn" style="padding: 12px 20px; font-size: 0.95rem; color: #ff6b81; border-color: rgba(255, 71, 87, 0.4);">
+                            🔄 Khôi Phục Dữ Liệu Ban Đầu
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Scripts -->
+    <script src="js/deals-data.js"></script>
+    <script src="js/seo-reviews.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>

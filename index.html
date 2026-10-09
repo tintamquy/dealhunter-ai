@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DealHunter AI - Nền Tảng Săn Deal Thông Minh & Đánh Giá Tiếp Thị Liên Kết</title>
+    <meta name="description" content="Khám phá mã giảm giá, voucher độc quyền và các bài đánh giá sản phẩm chi tiết chuẩn SEO từ Shopee, Lazada, TikTok Shop và Tiki. Tiết kiệm tới 70% ngân sách mua sắm mỗi ngày!">
+    <meta name="keywords" content="săn deal, mã giảm giá shopee, voucher lazada, review công nghệ, tiếp thị liên kết, affiliate marketing, so sánh giá">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://dealhunter.ai/">
+    <meta property="og:title" content="DealHunter AI - Săn Deal Đỉnh Cao & Review Chuẩn SEO">
+    <meta property="og:description" content="Tổng hợp deal hot, mã giảm giá độc quyền Shopee, Lazada, TikTok Shop, Tiki mỗi ngày!">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=1200">
+
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "DealHunter AI",
+      "url": "https://dealhunter.ai/",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://dealhunter.ai/?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header class="site-header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="brand-logo" id="logoLink">
+                    <div class="logo-icon">⚡</div>
+                    <div class="logo-text">DealHunter<span>AI</span></div>
+                    <span class="logo-badge">Pro Hub</span>
+                </a>
+
+                <div class="header-search">
+                    <div class="search-input-wrapper">
+                        <span class="search-icon">🔍</span>
+                        <input type="text" id="globalSearchInput" placeholder="Tìm kiếm deal công nghệ, gia dụng, thời trang...">
+                    </div>
+                </div>
+
+                <ul class="nav-links">
+                    <li><a href="#hot-deals" class="nav-link active">🔥 Hot Deals</a></li>
+                    <li><a href="#seo-reviews" class="nav-link">📝 Đánh Giá SEO</a></li>
+                    <li><a href="#calculator" class="nav-link">🧮 Tính Tiết Kiệm</a></li>
+                </ul>
+
+                <div class="nav-actions">
+                    <button class="btn-icon" id="themeToggleBtn" title="Chuyển đổi giao diện sáng/tối">
+                        <span id="themeIcon">☀️</span>
+                    </button>
+                    <a href="admin.html" class="btn-admin" id="btnAdminLink" title="Quản trị Affiliate & Thêm Deal">
+                        <span>⚙️ Quản Trị</span>
+                    </a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Spotlight Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="hero-banner">
+                <div class="hero-content-col">
+                    <div class="hero-badge-tag">
+                        <span class="pulse-dot"></span>
+                        ĐỘC QUYỀN SHOPEE • LAZADA • TIKTOK SHOP • TIKI
+                    </div>
+                    <h1 class="hero-title">
+                        Săn Deal Giá Đáy & <br>
+                        <span class="gradient-text">Đánh Giá Trung Thực</span>
+                    </h1>
+                    <p class="hero-subtitle">
+                        Nền tảng tích hợp tự động cập nhật hàng ngàn voucher giảm tới 70%, kết hợp phân tích chuyên sâu giúp bạn chọn mua thông minh và tiết kiệm tối đa.
+                    </p>
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <h4 id="statDealsCount">5,280+</h4>
+                            <p>Deal đã kiểm duyệt</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4>4.8 Tỷ ₫</h4>
+                            <p>Tiết kiệm cho độc giả</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4>100%</h4>
+                            <p>Link bảo đảm chính hãng</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Live Flash Sale Spotlight Card -->
+                <div class="flash-sale-spotlight">
+                    <div class="spotlight-header">
+                        <h3>⚡ FLASH SALE HÔM NAY</h3>
+                        <div class="countdown-clock" id="countdownClock">
+                            <div class="timer-box" id="timerHours">06</div>
+                            <span class="timer-sep">:</span>
+                            <div class="timer-box" id="timerMinutes">42</div>
+                            <span class="timer-sep">:</span>
+                            <div class="timer-box" id="timerSeconds">19</div>
+                        </div>
+                    </div>
+                    <div id="heroSpotlightDeal">
+                        <!-- Loaded dynamically via JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filter & Sort Control Bar -->
+    <section class="controls-section" id="hot-deals">
+        <div class="container">
+            <div class="controls-card">
+                <!-- Platform Filters -->
+                <div class="platform-chips">
+                    <span class="filter-label">Sàn:</span>
+                    <button class="chip-btn active" data-platform="all">🌐 Tất cả sàn</button>
+                    <button class="chip-btn shopee" data-platform="shopee">🟠 Shopee</button>
+                    <button class="chip-btn lazada" data-platform="lazada">🔵 Lazada</button>
+                    <button class="chip-btn tiktok" data-platform="tiktok">🖤 TikTok Shop</button>
+                    <button class="chip-btn tiki" data-platform="tiki">🔷 Tiki</button>
+                </div>
+
+                <!-- Category Filters -->
+                <div class="category-chips">
+                    <span class="filter-label">Ngành hàng:</span>
+                    <button class="chip-btn active" data-category="all">✨ Tất cả</button>
+                    <button class="chip-btn" data-category="electronics">💻 Công nghệ & Phụ kiện</button>
+                    <button class="chip-btn" data-category="home">🏠 Nhà cửa & Đời sống</button>
+                    <button class="chip-btn" data-category="beauty">💄 Làm đẹp & Sức khỏe</button>
+                    <button class="chip-btn" data-category="fashion">👟 Thời trang thể thao</button>
+                </div>
+
+                <!-- Sorting & Counter Row -->
+                <div class="filter-row-bottom">
+                    <div class="deal-counter-text">
+                        Đang hiển thị: <strong id="displayedCount">8</strong> deal hot
+                    </div>
+                    <div class="sort-group">
+                        <label for="sortSelect" class="filter-label">Sắp xếp:</label>
+                        <select id="sortSelect" class="sort-select">
+                            <option value="discount-desc">Giảm giá nhiều nhất (Sale %)</option>
+                            <option value="price-asc">Giá thấp đến cao</option>
+                            <option value="price-desc">Giá cao đến thấp</option>
+                            <option value="sold-desc">Lượt bán chạy nhất</option>
+                            <option value="rating-desc">Đánh giá cao nhất</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Deals Section -->
+    <section class="deals-section">
+        <div class="container">
+            <div class="section-title-wrap">
+                <h2 class="section-title">
+                    <span>🔥 Kho Deal Chọn Lọc Hôm Nay</span>
+                </h2>
+                <div id="activeFilterBadge" style="display:none;" class="logo-badge">Đang lọc</div>
+            </div>
+
+            <div class="deals-grid" id="dealsGrid">
+                <!-- Deals loaded dynamically via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- SEO Review Articles Section -->
+    <section class="reviews-section" id="seo-reviews">
+        <div class="container">
+            <div class="section-title-wrap">
+                <div>
+                    <h2 class="section-title">
+                        <span>📝 Góc Đánh Giá Chuyên Sâu Chuẩn SEO</span>
+                    </h2>
+                    <p style="color: var(--text-secondary); margin-top: 6px; font-size: 0.95rem;">
+                        Bài viết phân tích thực tế, so sánh ưu nhược điểm khách quan để bạn ra quyết định chuẩn xác.
+                    </p>
+                </div>
+            </div>
+
+            <div class="reviews-grid" id="reviewsGrid">
+                <!-- Reviews loaded dynamically via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Savings Calculator -->
+    <section class="calculator-section" id="calculator">
+        <div class="container">
+            <div class="calculator-card">
+                <div>
+                    <span class="hero-badge-tag" style="margin-bottom: 12px;">🧮 CÔNG CỤ THÔNG MINH</span>
+                    <h2 style="font-size: 2rem; margin-bottom: 12px;">Máy Tính Tiết Kiệm Mua Sắm</h2>
+                    <p style="color: var(--text-secondary); margin-bottom: 24px; font-size: 0.95rem;">
+                        Nhập giá gốc của món hàng và phần trăm giảm giá voucher để tính ngay số tiền bạn giữ lại trong ví và ước tính tích lũy hàng tháng.
+                    </p>
+
+                    <div class="calc-form-group">
+                        <label for="calcOriginalPrice">Giá niêm yết sản phẩm (VNĐ):</label>
+                        <input type="number" id="calcOriginalPrice" class="calc-input" value="2500000" step="50000">
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                        <div class="calc-form-group">
+                            <label for="calcDiscountPercent">Mức giảm giá (%):</label>
+                            <input type="number" id="calcDiscountPercent" class="calc-input" value="30" min="0" max="95">
+                        </div>
+                        <div class="calc-form-group">
+                            <label for="calcExtraVoucher">Voucher thêm (VNĐ):</label>
+                            <input type="number" id="calcExtraVoucher" class="calc-input" value="100000" step="10000">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="calc-result-box">
+                    <p style="font-size: 0.9rem; color: var(--text-secondary); text-transform: uppercase; font-weight: 700;">
+                        Bạn Tiết Kiệm Được Ngay
+                    </p>
+                    <div class="calc-result-number" id="calcSavingsOutput">850,000 ₫</div>
+                    <p style="font-size: 0.92rem; color: var(--text-muted); margin-bottom: 16px;">
+                        Giá thanh toán thực tế: <strong style="color: #fff;" id="calcFinalPrice">1,650,000 ₫</strong>
+                    </p>
+                    <div style="background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 8px; padding: 10px; font-size: 0.85rem; color: var(--accent-green);">
+                        💡 Mẹo: Nhập thêm mã giảm giá thanh toán bằng thẻ/ví ShopeePay để giảm thêm 5-10%!
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <!-- FTC Affiliate Disclosure -->
+            <div class="footer-affiliate-note">
+                <strong>⚖️ Minh Bạch Tiếp Thị Liên Kết (Affiliate Disclosure):</strong> DealHunter AI tham gia các chương trình tiếp thị liên kết từ Shopee, Lazada, TikTok Shop, Tiki và nhiều đối tác khác. Khi bạn nhấp vào liên kết sản phẩm và hoàn tất mua hàng, chúng tôi có thể nhận được một khoản hoa hồng nhỏ mà không làm phát sinh thêm bất kỳ chi phí nào cho bạn. Chúng tôi cam kết đánh giá sản phẩm độc lập, khách quan và trung thực.
+            </div>
+
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="brand-logo" style="margin-bottom: 14px;">
+                        <div class="logo-icon">⚡</div>
+                        <div class="logo-text">DealHunter<span>AI</span></div>
+                    </div>
+                    <p style="color: var(--text-secondary); font-size: 0.88rem; line-height: 1.6; margin-bottom: 16px;">
+                        Cổng thông tin săn deal thông minh, mã giảm giá và đánh giá sản phẩm chuyên sâu hỗ trợ người tiêu dùng mua sắm thông thái.
+                    </p>
+                    <p style="color: var(--text-muted); font-size: 0.8rem;">
+                        Phiên bản: 2.5.0 Pro Edition
+                    </p>
+                </div>
+
+                <div class="footer-col">
+                    <h5>Danh Mục Deal</h5>
+                    <ul class="footer-links">
+                        <li><a href="#hot-deals" data-filter-cat="electronics">Công Nghệ & Điện Tử</a></li>
+                        <li><a href="#hot-deals" data-filter-cat="home">Gia Dụng & Đời Sống</a></li>
+                        <li><a href="#hot-deals" data-filter-cat="beauty">Mỹ Phẩm & Skincare</a></li>
+                        <li><a href="#hot-deals" data-filter-cat="fashion">Thời Trang & Sneaker</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h5>Sàn Thương Mại</h5>
+                    <ul class="footer-links">
+                        <li><a href="#hot-deals" data-filter-plat="shopee">Shopee Mall Hot Deals</a></li>
+                        <li><a href="#hot-deals" data-filter-plat="lazada">Lazada LazMall Giảm Giá</a></li>
+                        <li><a href="#hot-deals" data-filter-plat="tiktok">TikTok Shop Xu Hướng</a></li>
+                        <li><a href="#hot-deals" data-filter-plat="tiki">Tiki Trading Chính Hãng</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h5>Dành Cho Quản Trị Viên</h5>
+                    <p style="color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 14px;">
+                        Tùy chỉnh mã Affiliate Partner ID của bạn để toàn bộ doanh số mua hàng tự động tính hoa hồng vào ví của bạn.
+                    </p>
+                    <a href="admin.html" class="btn-admin" style="display: inline-block;">
+                        ⚙️ Mở Bảng Quản Trị
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div>© 2026 DealHunter AI. Bản quyền thuộc về Bạn.</div>
+                <div>Xây dựng trên nền tảng AI Web Platform</div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Deal Detail Modal -->
+    <div class="modal-overlay" id="dealModalOverlay">
+        <div class="modal-container">
+            <button class="modal-close-btn" id="closeDealModalBtn">✕</button>
+            <div class="modal-body" id="dealModalBody">
+                <!-- Injected via JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Review Detail Modal -->
+    <div class="modal-overlay" id="reviewModalOverlay">
+        <div class="modal-container">
+            <button class="modal-close-btn" id="closeReviewModalBtn">✕</button>
+            <div class="modal-body" id="reviewModalBody">
+                <!-- Injected via JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Scripts -->
+    <script src="js/deals-data.js"></script>
+    <script src="js/seo-reviews.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
